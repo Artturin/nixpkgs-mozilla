@@ -9,11 +9,10 @@ let
   inherit (lib) updateFromGitHub;
   inherit (pkgs) fetchFromGitHub curl dbus fontconfig freeglut freetype
     gperf libxmi llvm mesa mesa_glu openssl pkgconfig makeWrapper writeText
-    xorg;
+    xorg rustc cargo;
   inherit (pkgs.stdenv) mkDerivation;
   inherit (pkgs.lib) importJSON;
   inherit (rustPlatform) buildRustPackage;
-  inherit (rustPlatform.rust) rustc cargo;
 
   pythonPackages = pkgs.python3Packages;
 
@@ -45,7 +44,7 @@ let
     name = "servo-rust-${version}";
     postUnpack = ''
       pwd
-      ls -la 
+      ls -la
       exit 100
     '';
     sourceRoot = "servo/components/servo";
